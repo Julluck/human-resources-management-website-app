@@ -137,7 +137,7 @@ try {
 async function startServer() {
   const app = express();
   app.use(cors({
-    origin: "https://hr-tool-julluck-thangs-projects-87dc3891.vercel.app",
+    origin: "human-resources-management-website.vercel.app",
     credentials: true,
   }));
   app.use(express.json());
