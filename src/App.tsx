@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+const API_URL = "https://hr-tool-87tw.onrender.com";
 import { 
   Users, 
   LayoutDashboard, 
@@ -110,7 +111,7 @@ const LoginScreen = ({ onLogin }: { onLogin: (user: Employee) => void }) => {
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('/api/login', {
+      const res = await fetch(`${API_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -416,7 +417,7 @@ export default function App() {
   const handleGeneratePayslip = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/payslips', {
+      const res = await fetch(`${API_URL}/api/payslips`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newPayslip)
@@ -441,7 +442,7 @@ export default function App() {
   const handleRequestLeave = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/leaves', {
+      const res = await fetch(`${API_URL}/api/leaves`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newLeave)
@@ -687,10 +688,10 @@ export default function App() {
     setLoading(true);
     try {
       const [empRes, statsRes, payRes, leaveRes] = await Promise.all([
-        fetch('/api/employees'),
-        fetch('/api/stats'),
-        fetch('/api/payslips'),
-        fetch('/api/leaves')
+        fetch(`${API_URL}/api/employees`),
+        fetch(`${API_URL}/api/stats`),
+        fetch(`${API_URL}/api/payslips`),
+        fetch(`${API_URL}/api/leaves`)
       ]);
       
       const empData = await empRes.json();
