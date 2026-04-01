@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { createServer as createViteServer } from "vite";
 import Database from "better-sqlite3";
 import path from "path";
@@ -135,6 +136,9 @@ try {
 
 async function startServer() {
   const app = express();
+  app.use(cors({
+    origin: "*"
+  }));
   app.use(express.json());
 
   // API Routes
