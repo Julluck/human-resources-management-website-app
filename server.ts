@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { createServer as createViteServer } from "vite";
 import Database from "better-sqlite3";
 import path from "path";
@@ -135,6 +136,9 @@ try {
 
 async function startServer() {
   const app = express();
+  app.use(cors({
+    origin: "*"
+  }));
   app.use(express.json());
 
   // API Routes
@@ -340,13 +344,17 @@ async function startServer() {
   //} else {
     //app.use(express.static(path.join(__dirname, "dist")));
     //app.get("*", (req, res) => {
-      //res.sendFile(path.join(__dirname, "dist", "index.html"));
+    //  res.sendFile(path.join(__dirname, "dist", "index.html"));
     //});
   //}
 
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
+
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
+  });
+  app.get("/", (req, res) => {
+    res.send("Backend is running");
   });
 }
 
