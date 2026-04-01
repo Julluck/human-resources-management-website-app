@@ -137,7 +137,8 @@ try {
 async function startServer() {
   const app = express();
   app.use(cors({
-    origin: "*"
+    origin: "https://hr-tool-julluck-thangs-projects-87dc3891.vercel.app",
+    credentials: true,
   }));
   app.use(express.json());
 
