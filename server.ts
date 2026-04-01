@@ -137,7 +137,7 @@ try {
 async function startServer() {
   const app = express();
   app.use(cors({
-    origin: "human-resources-management-website.vercel.app",
+    origin: "https://human-resources-management-website.vercel.app",
     credentials: true,
   }));
   app.use(express.json());
